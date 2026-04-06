@@ -2,76 +2,101 @@
 {% block title %}SocialFlow — One Post, Every Platform{% endblock %}
 {% block content %}
 <div class="hero">
-    <span class="hero-eyebrow">Multi-platform scheduling for creators</span>
-    <h1>Write once.<br>Publish everywhere.</h1>
-    <p>Schedule posts to X, LinkedIn, and more from one dashboard. No more logging into five different apps to post the same update.</p>
+    <span class="hero-eyebrow">Stop posting the same thing 5 different ways</span>
+    <h1>Write it once.<br>Ship it everywhere.</h1>
+    <p>One editor. X, LinkedIn, and more. Set it, forget it, and actually get on with your day.</p>
     <div class="hero-actions">
-        <a href="{% url 'accounts:register' %}" class="btn btn-dark">Start Free</a>
-        <a href="{% url 'posts:pricing' %}" class="btn btn-outline">See Pricing</a>
+        <a href="{% url 'accounts:register' %}" class="btn btn-accent">Start for free</a>
+        <a href="{% url 'posts:pricing' %}" class="btn btn-outline" style="border-color:var(--text-muted);color:var(--text-secondary) !important;">See pricing</a>
     </div>
     <div class="hero-proof">
-        <span class="dot"></span> Used by creators posting 200+ times per week
+        <span class="pulse-dot"></span> Built for creators who post daily
     </div>
 </div>
 
+<!-- The Problem -->
+<div class="section" style="background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+    <div class="container" style="max-width:680px;text-align:center;">
+        <h2 class="heading-serif" style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;margin-bottom:1.25rem;">You've got better things to do than log into five apps to post one update.</h2>
+        <p style="color:var(--text-secondary);font-size:0.9375rem;line-height:1.8;">Write your post here, pick platforms, hit schedule — done. SocialFlow publishes on time, every time. No more "oh crap, I forgot to post on LinkedIn."</p>
+    </div>
+</div>
+
+<!-- How it works -->
 <div class="section">
-    <h2 class="section-title">How it works</h2>
-    <div class="steps">
-        <div>
-            <div class="step-num">1</div>
-            <div class="step-title">Connect your accounts</div>
-            <div class="step-desc">Link X, LinkedIn, and other platforms in seconds.</div>
+    <div class="container">
+        <div class="section-head">
+            <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;">Three minutes to never think about this again</h2>
         </div>
-        <div>
-            <div class="step-num">2</div>
-            <div class="step-title">Write your post</div>
-            <div class="step-desc">Customize the message per platform or keep it uniform.</div>
-        </div>
-        <div>
-            <div class="step-num">3</div>
-            <div class="step-title">Schedule and forget</div>
-            <div class="step-desc">Set publish times and let SocialFlow handle the rest.</div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Connect your accounts</h3>
+                <p>Link X, LinkedIn, whatever you use. Takes about 30 seconds per platform. One-time setup.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>Write your post</h3>
+                <p>One editor. Customize per platform or keep it uniform. Add images. Preview how it'll look live.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Schedule and forget</h3>
+                <p>Pick a time or queue it up. SocialFlow handles the rest. You go do actual work.</p>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="section">
-    <h2 class="section-title">SocialFlow vs. posting manually</h2>
-    <table class="comparison">
-        <thead>
-            <tr>
-                <th></th>
-                <th>SocialFlow</th>
-                <th>Manual posting</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>Platforms per post</strong></td>
-                <td>Unlimited</td>
-                <td>One at a time</td>
-            </tr>
-            <tr>
-                <td><strong>Time per post</strong></td>
-                <td>~30 seconds</td>
-                <td>3-5 minutes</td>
-            </tr>
-            <tr>
-                <td><strong>Scheduling</strong></td>
-                <td>Visual calendar</td>
-                <td>Set phone reminders</td>
-            </tr>
-            <tr>
-                <td><strong>Missed posts</strong></td>
-                <td>Never</td>
-                <td>Frequently</td>
-            </tr>
-        </tbody>
-    </table>
+<!-- Comparison -->
+<div class="section" style="background:#fff;border-top:1px solid var(--border);">
+    <div class="container" style="max-width:700px;">
+        <div class="section-head">
+            <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;">SocialFlow vs. the old way</h2>
+            <p style="color:var(--text-muted);font-size:0.8125rem;">Be honest — you've missed posts before.</p>
+        </div>
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>SocialFlow</th>
+                    <th>Manual posting</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Platforms per post</td>
+                    <td>All of them, at once</td>
+                    <td>One. Then another. Then another.</td>
+                </tr>
+                <tr>
+                    <td>Time per post</td>
+                    <td>~30 seconds</td>
+                    <td>5 minutes minimum</td>
+                </tr>
+                <tr>
+                    <td>Scheduling</td>
+                    <td>Set it and forget it</td>
+                    <td>Phone alarm at 9pm. Always.</td>
+                </tr>
+                <tr>
+                    <td>Missed posts</td>
+                    <td><span class="check">Zero</span></td>
+                    <td><span class="dash">"I'll post tomorrow"</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<div class="section text-center" style="padding-bottom:4rem;">
-    <h2 class="section-title">Ready to post smarter?</h2>
-    <a href="{% url 'accounts:register' %}" class="btn btn-dark">Create your free account</a>
+<!-- CTA -->
+<div class="section" style="padding-bottom:5rem;">
+    <div class="container" style="max-width:560px;text-align:center;">
+        <div class="card" style="background:var(--navy);border-radius:var(--radius);padding:3rem 2rem;color:#fff;">
+            <h2 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;margin-bottom:0.75rem;">Your feed's not gonna manage itself</h2>
+            <p style="color:rgba(255,255,255,0.65);font-size:0.9375rem;margin-bottom:1.5rem;">Grab your free account and post your first cross-platform update in under 60 seconds.</p>
+            <a href="{% url 'accounts:register' %}" class="btn btn-white">Create your account — it's free</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
