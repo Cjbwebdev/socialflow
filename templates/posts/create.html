@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Create Post — SocialFlow{% endblock %}
+{% block content %}
+<section style="padding:40px 0">
+<div class="container" style="max-width:640px">
+<div class="card">
+<h2 style="margin-bottom:24px">Create New Post</h2>
+{% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
+<form method="post">
+{% csrf_token %}
+<div class="form-group">
+<label>Content</label>
+<textarea name="content" required placeholder="Write your post here..."></textarea>
+</div>
+<div class="form-group">
+<label>Schedule (optional)</label>
+<input type="datetime-local" name="scheduled_at" value="{{ now }}" min="{{ now }}">
+</div>
+<div class="form-group">
+<label>Platforms</label>
+<label style="font-weight:normal;display:flex;gap:16px;margin-top:8px">
+<label><input type="checkbox" name="platforms" value="twitter"> Twitter/X</label>
+<label><input type="checkbox" name="platforms" value="linkedin"> LinkedIn</label>
+<label><input type="checkbox" name="platforms" value="instagram"> Instagram</label>
+</label>
+</div>
+<button type="submit" class="btn" style="width:100%">Create Post</button>
+</form>
+</div>
+</div>
+</section>
+{% endblock %}

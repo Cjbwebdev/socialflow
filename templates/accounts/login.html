@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Login — SocialFlow{% endblock %}
+{% block content %}
+<section style="padding:80px 0">
+<div class="container" style="max-width:440px">
+<div class="card">
+<h2 style="margin-bottom:24px">Login</h2>
+{% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
+<form method="post">
+{% csrf_token %}
+<div class="form-group">
+<label>{{ form.username.label_tag }}</label>
+{{ form.username }}
+</div>
+<div class="form-group">
+<label>{{ form.password.label_tag }}</label>
+<input type="password" name="password" class="form-control" required>
+</div>
+{% if form.errors %}<div class="msg msg-error">Invalid username or password.</div>{% endif %}
+<button type="submit" class="btn" style="width:100%">Login</button>
+</form>
+<p style="margin-top:16px;text-align:center;font-size:14px">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+</div>
+</div>
+</section>
+{% endblock %}

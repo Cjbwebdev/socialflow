@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Edit Post - SocialFlow{% endblock %}
+{% block content %}
+<div class="container mt-3 mb-3">
+    <h1 class="mb-3">Edit Post</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="card">
+            <div class="form-group">
+                <label for="content">Post Content</label>
+                <textarea id="content" name="content" required>{{ post.content }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="scheduled_at">Schedule (optional)</label>
+                <input type="datetime-local" id="scheduled_at" name="scheduled_at" value="{{ post.scheduled_at|date:'Y-m-d\TH:i' }}" min="{{ now }}">
+            </div>
+            <div class="form-group">
+                <label>Platforms</label>
+                <div style="display: flex; gap: 1rem;">
+                    <label><input type="checkbox" name="platforms" value="twitter" {% if 'twitter' in post.platforms %}checked{% endif %}> Twitter/X</label>
+                    <label><input type="checkbox" name="platforms" value="linkedin" {% if 'linkedin' in post.platforms %}checked{% endif %}> LinkedIn</label>
+                    <label><input type="checkbox" name="platforms" value="facebook" {% if 'facebook' in post.platforms %}checked{% endif %}> Facebook</label>
+                </div>
+            </div>
+            <button type="submit" class="btn">Update Post</button>
+            <a href="{% url 'posts:dashboard' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

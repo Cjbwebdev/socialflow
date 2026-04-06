@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Payment Successful - SocialFlow{% endblock %}
+{% block content %}
+<div class="success-container">
+    <h1>🎉 Payment Successful!</h1>
+    <p>Your subscription is now active. Welcome to SocialFlow Pro!</p>
+    <a href="{% url 'posts:dashboard' %}" class="btn btn-primary">Go to Dashboard</a>
+</div>
+{% endblock %}

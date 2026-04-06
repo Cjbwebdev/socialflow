@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}SocialFlow — Schedule Posts Everywhere{% endblock %}
+{% block content %}
+<section class="hero">
+<div class="container">
+<h1>Schedule Posts<br>To <span style="color:var(--primary)">Every Platform</span></h1>
+<p>Write once, publish everywhere. SocialFlow lets creators schedule Twitter, LinkedIn, and Instagram posts from one beautiful dashboard.</p>
+<div class="hero-actions">
+<a href="{% url 'register' %}" class="btn">Start Free</a>
+<a href="{% url 'pricing' %}" class="btn btn-outline">See Pricing</a>
+</div>
+</div>
+</section>
+<section>
+<div class="container">
+<div class="grid">
+<div class="card feature"><div class="icon">📝</div><h3>Write Once</h3><p>Create content variations for each platform from a single draft.</p></div>
+<div class="card feature"><div class="icon">⏰</div><h3>Schedule Anything</h3><p>Set exact publish times for every post across all platforms.</p></div>
+<div class="card feature"><div class="icon">📊</div><h3>Track Performance</h3><p>Monitor publishes and status from your unified dashboard.</p></div>
+</div>
+</div>
+</section>
+{% endblock %}

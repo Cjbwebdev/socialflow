@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Billing — SocialFlow{% endblock %}
+{% block content %}
+<section style="padding:40px 0">
+<div class="container" style="max-width:640px">
+<div class="card">
+<h2 style="margin-bottom:24px">Billing & Subscription</h2>
+{% if subscription %}
+<p><strong>Plan:</strong> {{ subscription.get_plan_display|title }}</p>
+<p><strong>Status:</strong> {% if subscription.active %}<span class="badge badge-published">Active</span>{% else %}<span class="badge badge-failed">Inactive</span>{% endif %}</p>
+{% else %}
+<p class="msg msg-error">No active subscription found.</p>
+{% endif %}
+<a href="{% url 'pricing' %}" class="btn btn-outline" style="margin-top:16px">Change Plan</a>
+</div>
+</div>
+</section>
+{% endblock %}
