@@ -1,31 +1,54 @@
 {% extends "base.html" %}
 {% block title %}Pricing — SocialFlow{% endblock %}
 {% block content %}
-<section class="hero">
-<div class="container">
-<h1>Simple Pricing</h1>
-<p>Start free. Scale when you're ready.</p>
+<div style="padding-top:3rem;text-align:center;">
+    <h1 class="heading-serif" style="font-size:clamp(2rem,4.5vw,2.75rem);font-family:var(--font-serif);font-weight:400;margin-bottom:0.5rem;">Simple, honest pricing</h1>
+    <p class="text-secondary" style="max-width:440px;margin:0 auto 2.5rem;">Start free. Upgrade when you're posting enough to need it.</p>
 </div>
-</section>
-<section>
-<div class="container">
-<div class="grid">
-<div class="card price-card">
-<h3>Free</h3><div class="price">$0<span>/mo</span></div>
-<ul><li>5 posts/month</li><li>1 platform</li><li>Basic scheduling</li><li>Email support</li></ul>
-{% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline">Start Free</a>{% endif %}
+
+<div class="grid" style="max-width:860px;margin:0 auto 3rem;">
+    <div class="card" style="padding:2rem;">
+        <div class="text-xs text-muted" style="text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Free</div>
+        <div style="font-family:var(--font-serif);font-size:1.75rem;margin-bottom:0.25rem;">$0<span style="font-size:0.875rem;font-family:var(--font-sans);color:var(--text-muted);">/mo</span></div>
+        <div style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:1.25rem;">For creators just getting started</div>
+        <ul style="list-style:none;padding:0;margin-bottom:1.5rem;">
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">5 posts per month</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">1 platform</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">Basic scheduling</li>
+        </ul>
+        {% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline" style="width:100%;">Start Free</a>{% endif %}
+    </div>
+
+    <div class="card" style="padding:2rem;border:1.5px solid var(--navy);position:relative;">
+        <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:0.625rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:2px 12px;border-radius:2px;">Popular</div>
+        <div class="text-xs text-muted" style="text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Pro</div>
+        <div style="font-family:var(--font-serif);font-size:1.75rem;margin-bottom:0.25rem;">$19<span style="font-size:0.875rem;font-family:var(--font-sans);color:var(--text-muted);">/mo</span></div>
+        <div style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:1.25rem;">For serious creators and small brands</div>
+        <ul style="list-style:none;padding:0;margin-bottom:1.5rem;">
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">50 posts per month</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">3 platforms</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">Per-platform customization</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">Priority support</li>
+        </ul>
+        {% if user.is_authenticated %}<button class="btn btn-dark" style="width:100%;" disabled>Your Plan</button>{% else %}<a href="{% url 'accounts:register' %}" class="btn btn-dark" style="width:100%;">Start Free Trial</a>{% endif %}
+    </div>
+
+    <div class="card" style="padding:2rem;">
+        <div class="text-xs text-muted" style="text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.75rem;">Agency</div>
+        <div style="font-family:var(--font-serif);font-size:1.75rem;margin-bottom:0.25rem;">$79<span style="font-size:0.875rem;font-family:var(--font-sans);color:var(--text-muted);">/mo</span></div>
+        <div style="font-size:0.8125rem;color:var(--text-secondary);margin-bottom:1.25rem;">For teams managing multiple accounts</div>
+        <ul style="list-style:none;padding:0;margin-bottom:1.5rem;">
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">Unlimited posts</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">All platforms</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">Team access (up to 5)</li>
+            <li style="padding:6px 0;font-size:0.8125rem;border-bottom:1px solid var(--border);">API access</li>
+        </ul>
+        {% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline" style="width:100%;">Start Free</a>{% endif %}
+    </div>
 </div>
-<div class="card price-card" style="border-color:var(--primary)">
-<h3>Pro</h3><div class="price" style="color:var(--primary)">$19<span>/mo</span></div>
-<ul><li>50 posts/month</li><li>3 platforms</li><li>Advanced scheduling</li><li>Priority support</li></ul>
-{% if user.is_authenticated %}<button class="btn">Your Plan</button>{% else %}<a href="{% url 'accounts:register' %}" class="btn">Start Free</a>{% endif %}
+
+<div style="max-width:600px;margin:0 auto 4rem;padding:2rem;background:var(--cream);border-radius:var(--radius);">
+    <h3 style="font-family:var(--font-serif);font-weight:400;margin-bottom:0.5rem;">Not sure which plan?</h3>
+    <p class="text-sm text-secondary">Start on Free. You'll hit your limit fast if you're posting regularly — that's exactly when it's time to upgrade. No pressure, no tricks.</p>
 </div>
-<div class="card price-card">
-<h3>Agency</h3><div class="price">$79<span>/mo</span></div>
-<ul><li>Unlimited posts</li><li>All platforms</li><li>Team access</li><li>API access</li></ul>
-{% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline">Start Free</a>{% endif %}
-</div>
-</div>
-</div>
-</section>
 {% endblock %}

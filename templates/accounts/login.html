@@ -1,26 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Login — SocialFlow{% endblock %}
 {% block content %}
-<section style="padding:80px 0">
-<div class="container" style="max-width:440px">
-<div class="card">
-<h2 style="margin-bottom:24px">Login</h2>
-{% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
-<form method="post">
-{% csrf_token %}
-<div class="form-group">
-<label>{{ form.username.label_tag }}</label>
-{{ form.username }}
+<div class="form-page">
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to your account to continue.</p>
+    <div class="form-card">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label class="form-label">Username</label>
+                <input type="text" name="username" class="form-input" required autofocus>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-input" required>
+            </div>
+            {% if form.errors %}<div class="msg msg-error">Invalid username or password.</div>{% endif %}
+            <button type="submit" class="btn btn-dark" style="width:100%">Login</button>
+        </form>
+        <p class="text-center text-sm text-secondary" style="margin-top:1rem;">
+            Don't have an account? <a href="{% url 'accounts:register' %}">Register</a>
+        </p>
+    </div>
 </div>
-<div class="form-group">
-<label>{{ form.password.label_tag }}</label>
-{{ form.password }}
-</div>
-{% if form.errors %}<div class="msg msg-error">Invalid username or password.</div>{% endif %}
-<button type="submit" class="btn" style="width:100%">Login</button>
-</form>
-<p style="margin-top:16px;text-align:center;font-size:14px">Don't have an account? <a href="{% url 'accounts:register' %}">Register</a></p>
-</div>
-</div>
-</section>
 {% endblock %}

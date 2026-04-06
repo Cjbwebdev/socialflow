@@ -1,35 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Dashboard — SocialFlow{% endblock %}
 {% block content %}
-<section style="padding:40px 0">
-<div class="container">
-<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
-<h2>Dashboard</h2>
-<a href="{% url 'posts:create_post' %}" class="btn">+ New Post</a>
+<div style="padding-top:2.5rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <h1 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;">Your Posts</h1>
+        <a href="{% url 'posts:create_post' %}" class="btn btn-dark btn-sm">+ New Post</a>
+    </div>
+
+    {% if posts %}
+    <table>
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>Platforms</th>
+                <th>Scheduled</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+            <tr>
+                <td>{{ post.content|truncatechars:50 }}</td>
+                <td>{{ post.platform_count }}</td>
+                <td style="color:var(--text-muted);">{{ post.scheduled_at|date:"M d, H:i" }}</td>
+                <td><span class="badge badge-{{ post.status }}">{{ post.get_status_display }}</span></td>
+                <td><a href="{% url 'posts:edit_post' post.pk %}" class="text-sm">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="card" style="text-align:center;padding:2.5rem;">
+        <p class="text-secondary text-sm" style="margin-bottom:1rem;">No posts yet.</p>
+        <a href="{% url 'posts:create_post' %}" class="btn btn-dark btn-sm">Create your first post</a>
+    </div>
+    {% endif %}
 </div>
-{% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
-<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:32px">
-<div class="card" style="padding:20px;text-align:center"><h3 style="font-size:36px;color:var(--primary)">{{ scheduled }}</h3><p style="color:var(--muted)">Scheduled</p></div>
-<div class="card" style="padding:20px;text-align:center"><h3 style="font-size:36px;color:var(--success)">{{ published }}</h3><p style="color:var(--muted)">Published</p></div>
-</div>
-<div class="card">
-<h3 style="margin-bottom:16px">Recent Posts</h3>
-{% if posts %}
-<table>
-<tr><th>Content</th><th>Platforms</th><th>Status</th><th>Actions</th></tr>
-{% for post in posts %}
-<tr>
-<td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ post.content|truncatechars:60 }}</td>
-<td>{{ post.platforms|join:", " }}</td>
-<td><span class="badge badge-{{ post.status }}">{{ post.status }}</span></td>
-<td><a href="{% url 'posts:delete_post' post.pk %}" onclick="return confirm('Delete this post?')">Delete</a></td>
-</tr>
-{% endfor %}
-</table>
-{% else %}
-<p style="color:var(--muted)">No posts yet. <a href="{% url 'posts:create_post' %}">Create your first post</a>.</p>
-{% endif %}
-</div>
-</div>
-</section>
 {% endblock %}

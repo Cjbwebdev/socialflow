@@ -1,23 +1,77 @@
 {% extends "base.html" %}
-{% block title %}SocialFlow — Schedule Posts Everywhere{% endblock %}
+{% block title %}SocialFlow — One Post, Every Platform{% endblock %}
 {% block content %}
-<section class="hero">
-<div class="container">
-<h1>Schedule Posts<br>To <span style="color:var(--primary)">Every Platform</span></h1>
-<p>Write once, publish everywhere. SocialFlow lets creators schedule Twitter, LinkedIn, and Instagram posts from one beautiful dashboard.</p>
-<div class="hero-actions">
-<a href="{% url 'accounts:register' %}" class="btn">Start Free</a>
-<a href="{% url 'posts:pricing' %}" class="btn btn-outline">See Pricing</a>
+<div class="hero">
+    <span class="hero-eyebrow">Multi-platform scheduling for creators</span>
+    <h1>Write once.<br>Publish everywhere.</h1>
+    <p>Schedule posts to X, LinkedIn, and more from one dashboard. No more logging into five different apps to post the same update.</p>
+    <div class="hero-actions">
+        <a href="{% url 'accounts:register' %}" class="btn btn-dark">Start Free</a>
+        <a href="{% url 'posts:pricing' %}" class="btn btn-outline">See Pricing</a>
+    </div>
+    <div class="hero-proof">
+        <span class="dot"></span> Used by creators posting 200+ times per week
+    </div>
 </div>
+
+<div class="section">
+    <h2 class="section-title">How it works</h2>
+    <div class="steps">
+        <div>
+            <div class="step-num">1</div>
+            <div class="step-title">Connect your accounts</div>
+            <div class="step-desc">Link X, LinkedIn, and other platforms in seconds.</div>
+        </div>
+        <div>
+            <div class="step-num">2</div>
+            <div class="step-title">Write your post</div>
+            <div class="step-desc">Customize the message per platform or keep it uniform.</div>
+        </div>
+        <div>
+            <div class="step-num">3</div>
+            <div class="step-title">Schedule and forget</div>
+            <div class="step-desc">Set publish times and let SocialFlow handle the rest.</div>
+        </div>
+    </div>
 </div>
-</section>
-<section>
-<div class="container">
-<div class="grid">
-<div class="card feature"><div class="icon">📝</div><h3>Write Once</h3><p>Create content variations for each platform from a single draft.</p></div>
-<div class="card feature"><div class="icon">⏰</div><h3>Schedule Anything</h3><p>Set exact publish times for every post across all platforms.</p></div>
-<div class="card feature"><div class="icon">📊</div><h3>Track Performance</h3><p>Monitor publishes and status from your unified dashboard.</p></div>
+
+<div class="section">
+    <h2 class="section-title">SocialFlow vs. posting manually</h2>
+    <table class="comparison">
+        <thead>
+            <tr>
+                <th></th>
+                <th>SocialFlow</th>
+                <th>Manual posting</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Platforms per post</strong></td>
+                <td>Unlimited</td>
+                <td>One at a time</td>
+            </tr>
+            <tr>
+                <td><strong>Time per post</strong></td>
+                <td>~30 seconds</td>
+                <td>3-5 minutes</td>
+            </tr>
+            <tr>
+                <td><strong>Scheduling</strong></td>
+                <td>Visual calendar</td>
+                <td>Set phone reminders</td>
+            </tr>
+            <tr>
+                <td><strong>Missed posts</strong></td>
+                <td>Never</td>
+                <td>Frequently</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
+
+<div class="section text-center" style="padding-bottom:4rem;">
+    <h2 class="section-title">Ready to post smarter?</h2>
+    <a href="{% url 'accounts:register' %}" class="btn btn-dark">Create your free account</a>
 </div>
-</section>
 {% endblock %}
