@@ -13,17 +13,17 @@
 <div class="card price-card">
 <h3>Free</h3><div class="price">$0<span>/mo</span></div>
 <ul><li>5 posts/month</li><li>1 platform</li><li>Basic scheduling</li><li>Email support</li></ul>
-{% if user.is_anonymous %}<a href="{% url 'register' %}" class="btn btn-outline">Start Free</a>{% endif %}
+{% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline">Start Free</a>{% endif %}
 </div>
 <div class="card price-card" style="border-color:var(--primary)">
 <h3>Pro</h3><div class="price" style="color:var(--primary)">$19<span>/mo</span></div>
 <ul><li>50 posts/month</li><li>3 platforms</li><li>Advanced scheduling</li><li>Priority support</li></ul>
-{% if user.is_authenticated %}<button class="btn">Your Plan</button>{% else %}<a href="{% url 'register' %}" class="btn">Start Free</a>{% endif %}
+{% if user.is_authenticated %}<button class="btn">Your Plan</button>{% else %}<a href="{% url 'accounts:register' %}" class="btn">Start Free</a>{% endif %}
 </div>
 <div class="card price-card">
 <h3>Agency</h3><div class="price">$79<span>/mo</span></div>
 <ul><li>Unlimited posts</li><li>All platforms</li><li>Team access</li><li>API access</li></ul>
-{% if user.is_anonymous %}<a href="{% url 'register' %}" class="btn btn-outline">Start Free</a>{% endif %}
+{% if user.is_anonymous %}<a href="{% url 'accounts:register' %}" class="btn btn-outline">Start Free</a>{% endif %}
 </div>
 </div>
 </div>

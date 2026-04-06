@@ -19,7 +19,7 @@
 {% if form.errors %}<div class="msg msg-error">Invalid username or password.</div>{% endif %}
 <button type="submit" class="btn" style="width:100%">Login</button>
 </form>
-<p style="margin-top:16px;text-align:center;font-size:14px">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+<p style="margin-top:16px;text-align:center;font-size:14px">Don't have an account? <a href="{% url 'accounts:register' %}">Register</a></p>
 </div>
 </div>
 </section>

@@ -5,7 +5,7 @@
 <div class="container">
 <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px">
 <h2>Dashboard</h2>
-<a href="{% url 'create_post' %}" class="btn">+ New Post</a>
+<a href="{% url 'posts:create_post' %}" class="btn">+ New Post</a>
 </div>
 {% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
 <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-bottom:32px">
@@ -22,12 +22,12 @@
 <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ post.content|truncatechars:60 }}</td>
 <td>{{ post.platforms|join:", " }}</td>
 <td><span class="badge badge-{{ post.status }}">{{ post.status }}</span></td>
-<td><a href="{% url 'delete_post' post.pk %}" onclick="return confirm('Delete this post?')">Delete</a></td>
+<td><a href="{% url 'posts:delete_post' post.pk %}" onclick="return confirm('Delete this post?')">Delete</a></td>
 </tr>
 {% endfor %}
 </table>
 {% else %}
-<p style="color:var(--muted)">No posts yet. <a href="{% url 'create_post' %}">Create your first post</a>.</p>
+<p style="color:var(--muted)">No posts yet. <a href="{% url 'posts:create_post' %}">Create your first post</a>.</p>
 {% endif %}
 </div>
 </div>

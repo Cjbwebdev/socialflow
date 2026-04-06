@@ -27,7 +27,7 @@
 {% if form.errors %}<div class="msg msg-error">{{ form.errors }}</div>{% endif %}
 <button type="submit" class="btn" style="width:100%">Create Account</button>
 </form>
-<p style="margin-top:16px;text-align:center;font-size:14px">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+<p style="margin-top:16px;text-align:center;font-size:14px">Already have an account? <a href="{% url 'accounts:login' %}">Login</a></p>
 </div>
 </div>
 </section>
