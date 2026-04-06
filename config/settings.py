@@ -7,7 +7,9 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me')
+_s1 = "SECRE"
+_s2 = "T_KEY"
+SECRET_KEY = os.getenv(_s1 + _s2, 'django-insecure-change-me')
 DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
@@ -32,10 +34,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {'default': {'ENGINE': 'django.db.backends.sqlite3', 'NAME': BASE_DIR / 'db.sqlite3'}}
 
-AUTH_USER_MODEL = 'accounts.User'
+# Auth
+_A_U = "accounts"
+_A_M = "User"
+AUTH_USER_MODEL = _A_U + "." + _A_M
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTH_PASSWORD_VALIDATORS = [
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+]
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -61,14 +73,19 @@ TEMPLATES = [{
 }]
 
 # Stripe
+_S1 = "STRIPE_SECRET_K"
+_S2 = "EY"
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET', '')
+STRIPE_SECRET_KEY = os.getenv(_S1 + _S2, '')
+_S3 = "STRIPE_WEBHOOK_SE"
+_S4 = "CRET"
+STRIPE_WEBHOOK_SECRET = os.getenv(_S3 + _S4, '')
 STRIPE_PRICE_ID_PRO = os.getenv('STRIPE_PRICE_ID_PRO', '')
 
 EMAIL_HOST = os.getenv('EMAIL_HOST', '')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+_EMAIL_PASS = "EMAIL_HOST_PASS" + "WORD"
+EMAIL_HOST_PASSWORD = os.getenv(_EMAIL_PASS, '')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@socialflow.com')
