@@ -16,6 +16,11 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 INSTALLED_APPS = [
     'django.contrib.admin', 'django.contrib.auth', 'django.contrib.contenttypes',
     'django.contrib.sessions', 'django.contrib.messages', 'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth', 'allauth.account', 'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter_oauth2',
+    'allauth.socialaccount.providers.linkedin_oauth2',
+    'allauth.socialaccount.providers.instagram',
     'accounts', 'posts', 'billing',
 ]
 
@@ -26,6 +31,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 ]
 
@@ -41,6 +47,49 @@ AUTH_USER_MODEL = _A_U + "." + _A_M
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_LOGIN_METHODS = {'username'}
+ACCOUNT_SIGNUP_FIELDS = ['username*', 'password1*', 'password2*']
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_STORE_TOKENS = True
+
+TWITTER_API_KEY = os.getenv('TWITTER_API_KEY', '')
+TWITTER_API_SECRET = os.getenv('TWITTER_API_SECRET', '')
+TWITTER_BEARER_TOKEN = os.getenv('TWITTER_BEARER_TOKEN', '')
+LINKEDIN_CLIENT_ID = os.getenv('LINKEDIN_CLIENT_ID', '')
+LINKEDIN_CLIENT_SECRET = os.getenv('LINKEDIN_CLIENT_SECRET', '')
+INSTAGRAM_CLIENT_ID = os.getenv('INSTAGRAM_CLIENT_ID', '')
+INSTAGRAM_CLIENT_SECRET = os.getenv('INSTAGRAM_CLIENT_SECRET', '')
+
+SOCIALACCOUNT_PROVIDERS = {
+    'twitter_oauth2': {
+        'APP': {
+            'client_id': os.getenv('TWITTER_CLIENT_ID', ''),
+            'secret': os.getenv('TWITTER_CLIENT_SECRET', ''),
+            'key': os.getenv('TWITTER_API_KEY', ''),
+        },
+    },
+    'linkedin_oauth2': {
+        'APP': {
+            'client_id': os.getenv('LINKEDIN_CLIENT_ID', ''),
+            'secret': os.getenv('LINKEDIN_CLIENT_SECRET', ''),
+        },
+        'SCOPE': ['r_liteprofile', 'r_emailaddress', 'w_member_social'],
+    },
+    'instagram': {
+        'APP': {
+            'client_id': os.getenv('INSTAGRAM_CLIENT_ID', ''),
+            'secret': os.getenv('INSTAGRAM_CLIENT_SECRET', ''),
+        },
+    },
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},

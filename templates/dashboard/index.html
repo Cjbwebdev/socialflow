@@ -2,10 +2,14 @@
 {% block title %}Dashboard — SocialFlow{% endblock %}
 {% block content %}
 <div style="padding-top:2.5rem;">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
         <h1 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;">Your Posts</h1>
-        <a href="{% url 'posts:create_post' %}" class="btn btn-dark btn-sm">+ New Post</a>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+            <a href="{% url 'posts:create_post' %}" class="btn btn-dark btn-sm">+ New Post</a>
+            <a href="{% url 'posts:publish_due_posts' %}" class="btn btn-outline btn-sm">Publish Due Posts</a>
+        </div>
     </div>
+    {% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
 
     {% if posts %}
     <table>

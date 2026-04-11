@@ -3,6 +3,7 @@
 {% block content %}
 <div class="container mt-3 mb-3">
     <h1 class="mb-3">Edit Post</h1>
+    {% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
     <form method="post">
         {% csrf_token %}
         <div class="card">
@@ -16,10 +17,19 @@
             </div>
             <div class="form-group">
                 <label>Platforms</label>
-                <div style="display: flex; gap: 1rem;">
-                    <label><input type="checkbox" name="platforms" value="twitter" {% if 'twitter' in post.platforms %}checked{% endif %}> Twitter/X</label>
-                    <label><input type="checkbox" name="platforms" value="linkedin" {% if 'linkedin' in post.platforms %}checked{% endif %}> LinkedIn</label>
-                    <label><input type="checkbox" name="platforms" value="facebook" {% if 'facebook' in post.platforms %}checked{% endif %}> Facebook</label>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                    <label>
+                        <input type="checkbox" name="platforms" value="twitter" {% if 'twitter' in post.platforms %}checked{% endif %} {% if 'twitter' not in connected_platforms %}disabled{% endif %}> Twitter/X
+                        {% if 'twitter' not in connected_platforms %}<span style="color:#9ca3af;font-size:0.85rem;display:block;">Connect first</span>{% endif %}
+                    </label>
+                    <label>
+                        <input type="checkbox" name="platforms" value="linkedin" {% if 'linkedin' in post.platforms %}checked{% endif %} {% if 'linkedin' not in connected_platforms %}disabled{% endif %}> LinkedIn
+                        {% if 'linkedin' not in connected_platforms %}<span style="color:#9ca3af;font-size:0.85rem;display:block;">Connect first</span>{% endif %}
+                    </label>
+                    <label>
+                        <input type="checkbox" name="platforms" value="instagram" disabled> Instagram
+                        <span style="color:#9ca3af;font-size:0.85rem;display:block;">Not supported yet</span>
+                    </label>
                 </div>
             </div>
             <button type="submit" class="btn">Update Post</button>

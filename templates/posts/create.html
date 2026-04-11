@@ -18,10 +18,19 @@
 </div>
 <div class="form-group">
 <label>Platforms</label>
-<label style="font-weight:normal;display:flex;gap:16px;margin-top:8px">
-<label><input type="checkbox" name="platforms" value="twitter"> Twitter/X</label>
-<label><input type="checkbox" name="platforms" value="linkedin"> LinkedIn</label>
-<label><input type="checkbox" name="platforms" value="instagram"> Instagram</label>
+<label style="font-weight:normal;display:flex;gap:16px;margin-top:8px;flex-wrap:wrap;">
+<label>
+    <input type="checkbox" name="platforms" value="twitter" {% if 'twitter' not in connected_platforms %}disabled{% else %}checked{% endif %}> Twitter/X
+    {% if 'twitter' not in connected_platforms %}<span style="color:#9ca3af;font-size:0.85rem;display:block;">Connect first</span>{% endif %}
+</label>
+<label>
+    <input type="checkbox" name="platforms" value="linkedin" {% if 'linkedin' not in connected_platforms %}disabled{% else %}checked{% endif %}> LinkedIn
+    {% if 'linkedin' not in connected_platforms %}<span style="color:#9ca3af;font-size:0.85rem;display:block;">Connect first</span>{% endif %}
+</label>
+<label>
+    <input type="checkbox" name="platforms" value="instagram" disabled> Instagram
+    <span style="color:#9ca3af;font-size:0.85rem;display:block;">Not supported yet</span>
+</label>
 </label>
 </div>
 <button type="submit" class="btn" style="width:100%">Create Post</button>

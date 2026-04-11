@@ -16,3 +16,7 @@ class Post(models.Model):
         ordering = ['-scheduled_at', '-created_at']
     def __str__(self):
         return f"{self.content[:50]}... ({self.status})"
+
+    @property
+    def platform_count(self):
+        return len(self.platforms or [])

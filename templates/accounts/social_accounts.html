@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+{% block title %}Social Accounts — SocialFlow{% endblock %}
+{% block content %}
+<section style="padding:40px 0">
+<div class="container" style="max-width:780px">
+<div class="card">
+    <h2 style="margin-bottom:24px">Connected Social Accounts</h2>
+    {% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
+    <div style="margin-bottom:2rem;">
+        <p>Connect your social accounts so scheduled posts can be published automatically.</p>
+        <p style="color:var(--text-secondary);margin-top:0.5rem;">Supported platforms: Twitter/X and LinkedIn. Instagram integration requires image media support and is not yet available.</p>
+        <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
+            {% providers_media_js %}
+            {% for provider in available_providers %}
+                {% if provider.id in allauth_connected %}
+                    <button class="btn btn-outline btn-sm" disabled>{{ provider.label }} connected</button>
+                {% else %}
+                    <a href="{% provider_login_url provider.id process='connect' %}" class="btn btn-accent btn-sm">Connect {{ provider.label }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+    {% if social_accounts or allauth_connected %}
+        <div style="margin-bottom:1.5rem;">
+            <h3 style="font-size:1rem;margin-bottom:0.75rem;">Currently connected</h3>
+            <table style="width:100%;border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--border);">Provider</th>
+                        <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--border);">Account ID</th>
+                        <th style="text-align:left;padding:.75rem;border-bottom:1px solid var(--border);">Expires</th>
+                        <th style="text-align:right;padding:.75rem;border-bottom:1px solid var(--border);">Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for account in social_accounts %}
+                        <tr>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">{{ account.get_provider_display }}</td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">{{ account.provider_user_id }}</td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">{{ account.expires_at|default:'Never' }}</td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);text-align:right;">Manual</td>
+                        </tr>
+                    {% endfor %}
+                    {% for provider in allauth_connected %}
+                        <tr>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">
+                                {% if provider == 'twitter_oauth2' %}Twitter/X{% elif provider == 'linkedin_oauth2' %}LinkedIn{% else %}{{ provider|title }}{% endif %}
+                            </td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">Connected via OAuth</td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);">—</td>
+                            <td style="padding:.75rem;border-bottom:1px solid var(--border);text-align:right;">OAuth</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <div>
+        <h3 style="font-size:1rem;margin-bottom:0.75rem;">Connect or update a provider</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Provider</label>
+                {{ form.provider }}
+            </div>
+            <div class="form-group">
+                <label>Provider user ID</label>
+                {{ form.provider_user_id }}
+                <div class="form-error">{{ form.provider_user_id.help_text }}</div>
+            </div>
+            <div class="form-group">
+                <label>Access token</label>
+                {{ form.access_token }}
+                <div class="form-error">{{ form.access_token.help_text }}</div>
+            </div>
+            <div class="form-group">
+                <label>Refresh token</label>
+                {{ form.refresh_token }}
+            </div>
+            <div class="form-group">
+                <label>Expires at</label>
+                {{ form.expires_at }}
+            </div>
+            <button type="submit" class="btn btn-accent">Save Connection</button>
+        </form>
+    </div>
+</div>
+</div>
+</section>
+{% endblock %}
