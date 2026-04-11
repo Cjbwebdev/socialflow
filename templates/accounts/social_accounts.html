@@ -9,7 +9,7 @@
     {% for msg in messages %}<div class="msg {% if msg.level == 40 %}msg-error{% else %}msg-success{% endif %}">{{ msg }}</div>{% endfor %}
     <div style="margin-bottom:2rem;">
         <p>Connect your social accounts so scheduled posts can be published automatically.</p>
-        <p style="color:var(--text-secondary);margin-top:0.5rem;">Supported platforms: Twitter/X and LinkedIn. Instagram integration requires image media support and is not yet available.</p>
+        <p style="color:var(--text-secondary);margin-top:0.5rem;">Supported platforms: Twitter/X and LinkedIn. Instagram integration is not yet supported for text-only scheduling.</p>
         <div style="display:flex;gap:0.75rem;margin-top:1rem;flex-wrap:wrap;">
             {% providers_media_js %}
             {% for provider in available_providers %}
@@ -19,6 +19,12 @@
                     <a href="{% provider_login_url provider.id process='connect' %}" class="btn btn-accent btn-sm">Connect {{ provider.label }}</a>
                 {% endif %}
             {% endfor %}
+        </div>
+        <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
+            <strong>Tip:</strong> Use the buttons above first. Manual token entry below is only for advanced setup or when OAuth is not available.
+        </div>
+        <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
+            If connect buttons do not appear or fail, make sure the corresponding Social Application is configured in Django admin and the provider credentials are configured in your environment.
         </div>
     </div>
 
@@ -59,7 +65,8 @@
     {% endif %}
 
     <div>
-        <h3 style="font-size:1rem;margin-bottom:0.75rem;">Connect or update a provider</h3>
+        <h3 style="font-size:1rem;margin-bottom:0.75rem;">Advanced: manual token connection</h3>
+        <p style="color:var(--text-secondary);margin-bottom:1rem;">Only use this form if OAuth connect is unavailable or you already have valid provider tokens.</p>
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
@@ -86,6 +93,9 @@
             </div>
             <button type="submit" class="btn btn-accent">Save Connection</button>
         </form>
+        <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
+            <strong>Need help?</strong> If you have trouble connecting via OAuth, visit the Django admin and add the corresponding Social Application with the callback URL shown in the README.
+        </div>
     </div>
 </div>
 </div>
