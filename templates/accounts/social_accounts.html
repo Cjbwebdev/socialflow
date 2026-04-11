@@ -21,10 +21,10 @@
             {% endfor %}
         </div>
         <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
-            <strong>Tip:</strong> Use the buttons above first. Manual token entry below is only for advanced setup or when OAuth is not available.
+            <strong>Tip:</strong> Press the provider button and approve access to connect the account. No manual token entry is required for standard OAuth flow.
         </div>
         <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
-            If connect buttons do not appear or fail, make sure the corresponding Social Application is configured in Django admin and the provider credentials are configured in your environment.
+            If the buttons do not work, make sure the provider credentials are configured in Django admin as Social Applications and the environment variables are set.
         </div>
     </div>
 
@@ -65,37 +65,39 @@
     {% endif %}
 
     <div>
-        <h3 style="font-size:1rem;margin-bottom:0.75rem;">Advanced: manual token connection</h3>
-        <p style="color:var(--text-secondary);margin-bottom:1rem;">Only use this form if OAuth connect is unavailable or you already have valid provider tokens.</p>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label>Provider</label>
-                {{ form.provider }}
+        <details style="margin-top:1rem;">
+            <summary style="cursor:pointer;font-weight:600;">Advanced: manual token connection</summary>
+            <p style="color:var(--text-secondary);margin:0.75rem 0 1rem;">Only use this form if OAuth connect is unavailable or you already have valid provider tokens.</p>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Provider</label>
+                    {{ form.provider }}
+                </div>
+                <div class="form-group">
+                    <label>Provider user ID</label>
+                    {{ form.provider_user_id }}
+                    <div class="form-error">{{ form.provider_user_id.help_text }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Access token</label>
+                    {{ form.access_token }}
+                    <div class="form-error">{{ form.access_token.help_text }}</div>
+                </div>
+                <div class="form-group">
+                    <label>Refresh token</label>
+                    {{ form.refresh_token }}
+                </div>
+                <div class="form-group">
+                    <label>Expires at</label>
+                    {{ form.expires_at }}
+                </div>
+                <button type="submit" class="btn btn-accent">Save Connection</button>
+            </form>
+            <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
+                <strong>Need help?</strong> If you have trouble connecting via OAuth, visit the Django admin and add the corresponding Social Application with the callback URL shown in the README.
             </div>
-            <div class="form-group">
-                <label>Provider user ID</label>
-                {{ form.provider_user_id }}
-                <div class="form-error">{{ form.provider_user_id.help_text }}</div>
-            </div>
-            <div class="form-group">
-                <label>Access token</label>
-                {{ form.access_token }}
-                <div class="form-error">{{ form.access_token.help_text }}</div>
-            </div>
-            <div class="form-group">
-                <label>Refresh token</label>
-                {{ form.refresh_token }}
-            </div>
-            <div class="form-group">
-                <label>Expires at</label>
-                {{ form.expires_at }}
-            </div>
-            <button type="submit" class="btn btn-accent">Save Connection</button>
-        </form>
-        <div style="margin-top:1rem;color:var(--text-secondary);font-size:0.9rem;">
-            <strong>Need help?</strong> If you have trouble connecting via OAuth, visit the Django admin and add the corresponding Social Application with the callback URL shown in the README.
-        </div>
+        </details>
     </div>
 </div>
 </div>
