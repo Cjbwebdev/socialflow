@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django import forms
-from allauth.socialaccount.models import SocialAccount as AllAuthSocialAccount
+from allauth.socialaccount.models import SocialAccount as AllAuthSocialAccount, SocialApp
 from .models import User, SocialAccount
 from .forms import SocialAccountForm
 

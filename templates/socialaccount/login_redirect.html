@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Connecting {{ provider }} — SocialFlow{% endblock %}
+
+{% block content %}
+<section style="padding: 4rem 0">
+    <div class="container" style="max-width:720px">
+        <div class="card" style="text-align:center;">
+            <h1 style="margin-bottom:1rem;">Connecting {{ provider }}</h1>
+            <p style="color: var(--text-secondary); margin-bottom:1.5rem; font-size:1rem;">
+                We are redirecting you to {{ provider }} so you can approve access and connect your account.
+            </p>
+            <div style="margin-bottom:1.5rem;">
+                <a href="{{ redirect_to }}" class="btn btn-accent">Continue to {{ provider }}</a>
+            </div>
+            <p style="color: var(--text-secondary); font-size:0.9rem;">
+                If the page does not change automatically, click the button above.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<meta http-equiv="refresh" content="0.8;url={{ redirect_to }}" />
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            window.location.href = '{{ redirect_to }}';
+        }, 600);
+    });
+</script>
+{% endblock %}
