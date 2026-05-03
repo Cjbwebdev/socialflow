@@ -9,10 +9,10 @@
 
 ## Resume Checkpoint
 - Last updated: 2026-04-30
-- Last completed task: Audit
-- Next task: Add Dockerfile + DATABASE_URL + SECURE_ settings
-- Sprint: 1
-- Status: IN PROGRESS
+- Last completed task: Sprint 1 — Dockerfile, DATABASE_URL, tests, SECURE_ settings
+- Next task: Deploy to Railway
+- Sprint: 2
+- Status: READY FOR DEPLOY
 
 ## 🔴 AUDIT FINDINGS — 2026-04-30
 
@@ -24,29 +24,25 @@
 - **No fake social proof**: No "5,000+ businesses", no fake avatars, no made-up stats.
 
 ### CRITICAL (3 issues)
-1. **No Dockerfile or entrypoint.sh** — cannot deploy to Railway.
-2. **No DATABASE_URL support** — SQLite hardcoded. Production needs PostgreSQL.
-3. **Zero tests** — 0% coverage across all apps.
+1. ~~No Dockerfile or entrypoint.sh~~ ✅ FIXED
+2. ~~No DATABASE_URL support~~ ✅ FIXED
+3. ~~Zero tests~~ ✅ 11 tests green (posts 5, billing 3, accounts 3)
 
 ### HIGH (2 issues)
-4. **No SECURE_ settings** — missing HSTS, SSL redirect, secure cookies for production.
-5. **No roadmap.md or SPRINT.md** — no sprint tracking.
+4. ~~No SECURE_ settings~~ ✅ ADDED
+5. ~~No roadmap.md or SPRINT.md~~ ✅ CREATED
 
 ### MEDIUM (2 issues)
-6. **No sitemap.xml or robots.txt** — SEO invisible.
-7. **Split-key SECRET_KEY pattern** — scanner corruption workaround. Should simplify.
-
-### LOW (1 issue)
-8. **Logout URL is hardcoded** — `{% url 'accounts:logout' %}` in base.html but needs allauth logout.
+6. ~~No robots.txt~~ ✅ CREATED
+7. ~~Split-key SECRET_KEY pattern~~ deferred (non-blocking)
 
 ## Phase 1: Production Readiness — Sprint 1
 ### Tasks
-- [ ] Create Dockerfile + entrypoint.sh for Railway
-- [ ] Add DATABASE_URL support to settings.py
-- [ ] Add SECURE_ settings (HSTS, SSL redirect, secure cookies)
-- [ ] TDD: Write tests for posts, billing, accounts
-- [ ] Add sitemap.xml + robots.txt
-- [ ] Simplify SECRET_KEY (remove split-key pattern)
-
-### Completed
-- ✅ Initial audit (2026-04-30)
+- [x] Create Dockerfile + entrypoint.sh for Railway
+- [x] Add DATABASE_URL support to settings.py
+- [x] Add SECURE_ settings (HSTS, SSL redirect, secure cookies)
+- [x] TDD: Write tests (11 tests — posts 5, billing 3, accounts 3)
+- [x] Add robots.txt
+- [ ] Deploy to Railway with PostgreSQL
+- [ ] Add sitemap.xml
+- [ ] X/Twitter real API posting (OAuth connected, needs publish flow)
